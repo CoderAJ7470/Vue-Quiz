@@ -33,7 +33,6 @@
   color: #fff;
   font-weight: bold;
   letter-spacing: 2px;
-  cursor: pointer;
 }
 
 .questionBlock .correctAnswer {
@@ -46,6 +45,11 @@
   color: #fff;
 }
 
+.questionBlock .disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 .scoreKeeper {
   margin-top: 0.7em;
   background-color: dodgerblue;
@@ -54,6 +58,15 @@
   border: 2px solid #333;
   border-radius: 5px;
   font-weight: bold;
+  line-height: 25px;
+}
+
+@media only screen and (min-width: 720px) {
+  .scoreKeeper {
+    width: 40%;
+    display: inline-block;
+    margin-left: 1em;
+  }
 }
 
 * {

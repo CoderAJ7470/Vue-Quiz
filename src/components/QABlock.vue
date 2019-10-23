@@ -7,7 +7,7 @@
         <li
           v-for="(answer, index) in answers" v-bind:key="index"
           v-on:click="checkSelectedAnswer(answer.isCorrect, index)"
-          :class="addAnswerClass(answer.isCorrect, index)">
+          :class="addClassesUponSelection(answer.isCorrect, index)">
           {{ answer.id }}. {{ answer.text }}
           </li>
       </ol>
@@ -69,17 +69,29 @@ export default {
         this.answerCorrect = true
       }
     },
-    addAnswerClass(correctAnswer, index) {
-      let cssClass = '';
+    addClassesUponSelection(correctAnswer, index) {
+      // let cssClass = '';
+      let classArray = [];
+      let answerTypeClass, disabledClass = '';
+
+      // console.log(index);
+
+      if(!this.notAnswered) {
+        disabledClass = 'disabled';
+        classArray.push(disabledClass);
+      }
 
       if(!this.notAnswered && correctAnswer) {
-        cssClass = 'correctAnswer';
+        answerTypeClass = 'correctAnswer';
       }
       else if(this.selectedItemIndex === index && !this.notAnswered && !correctAnswer) {
-        cssClass = 'incorrectAnswer';
+        answerTypeClass = 'incorrectAnswer';
       }
 
-      return cssClass;
+      classArray.push(answerTypeClass);
+
+      // return cssClass;
+      return classArray;
     },
     checkEndOfQuiz() {
       if(this.questionCount === this.totalQuestions) {
